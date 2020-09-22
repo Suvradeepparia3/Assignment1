@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import SearchBar from './Components/SearchBar';
+import Header from './Components/Header';
+import FetchingData from './Components/FetchingData';
 import './App.css';
 
 function App() {
+
+  const [ scrollBar, setScrollBar ] = useState(0)
+
+  useEffect(() => {
+    window.onscroll = function(ev) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          setScrollBar(scrollBar + 1)
+      }
+    };
+  },[window.scrollY])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <SearchBar />
+      <FetchingData bar={scrollBar}/>
     </div>
   );
 }
-
 export default App;
+
