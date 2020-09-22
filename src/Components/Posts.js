@@ -1,19 +1,33 @@
-import React from 'react';
-import Modal from './Modal';
+import React, { useState } from 'react';
+import Popup from './Popup';
 
 function Posts(props) {
+
+    const [ selectedPost, setSelectedPost ] = useState([])
+    const [ modal, setModal ] = useState(false)
+
+    const callModal = (post) => {
+        setModal(true)
+        setSelectedPost(post)
+    }
+    const close = () => {
+        setModal(false)
+    }
+
     return (
         <div>
           
             <div className="card">
-               
-                <div className="content-header">
+            <button className="content-header" onClick={() => callModal(props.post)}>
+                
                 User Id: <b><span>{props.post.id}</span></b>
                 <p>User Email: <b><span>{props.post.email}</span></b></p>
                 User Name: <b><span>{props.post.name}</span></b>
-                </div>
-    
+                
+                </button>
             </div>
+            <Popup post={selectedPost} call={modal} close={close}/>
+           
         </div>
     );
 }

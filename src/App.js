@@ -13,7 +13,8 @@ function App() {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
           setScrollBar(scrollBar + 1)
       }
-    };
+    }
+    // eslint-disable-next-line
   },[window.scrollY])
   
 
