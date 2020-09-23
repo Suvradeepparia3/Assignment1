@@ -7,6 +7,7 @@ function FetchingData(props) {
     const [ data, setData ] = useState([])
     const [ filter, setFilter ] = useState([])
     const [ limit, setLimit ] = useState(20)
+    const [ filteredOrNot, setFilteredOrNot ] = useState(false)
 
     
     const dataFetching = () => {
@@ -24,28 +25,39 @@ function FetchingData(props) {
     }
 
     useEffect(() => {
-        console.log(filter)
         setFilter(data.filter(
             (post) => {
                 return post.name.indexOf((props.searchData)) !== -1;
                 //  one thing i want to do to highlight word. but not done
             }
         ))
-    },[data,props.searchData])
+        setFilteredOrNot(true)
+    },[props.searchData])
     
 
     useEffect(() => {
         dataFetching()
+        setFilteredOrNot(false)
         // eslint-disable-next-line
     },[props.bar])
 
     
 
     return (
+        filteredOrNot ? 
         <div>
             {
                 filter.length ?
                 filter.map((post,index) => (
+                    <Posts key={index} post={post} />
+                ))
+                : null
+            }
+        </div> :
+        <div>
+            {
+                data.length ?
+                data.map((post,index) => (
                     <Posts key={index} post={post} />
                 ))
                 : null
