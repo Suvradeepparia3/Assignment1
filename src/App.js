@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from './Components/SearchBar';
 import Header from './Components/Header';
-import FetchingData from './Components/FetchingData';
 import './App.css';
 
 function App() {
@@ -21,8 +20,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SearchBar />
-      <FetchingData bar={scrollBar}/>
+      <SearchBar bar={scrollBar}/>
     </div>
   );
 }

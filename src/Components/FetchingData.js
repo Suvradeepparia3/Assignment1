@@ -11,12 +11,10 @@ function FetchingData(props) {
 
     
     const dataFetching = () => {
-        
         Axios.get(`https://jsonplaceholder.typicode.com/comments/?_limit=${limit}`)
         .then((response) => {
             setData(response.data)
             setLimit(limit + 10)
-            // console.log(typeof(setData))
             // i am calling first 20 then 30 then 40 so on, every time i call total value from start.
         })
         .catch((error) => {
@@ -32,6 +30,7 @@ function FetchingData(props) {
             }
         ))
         setFilteredOrNot(true)
+        // eslint-disable-next-line
     },[props.searchData])
     
 
@@ -60,7 +59,7 @@ function FetchingData(props) {
                 data.map((post,index) => (
                     <Posts key={index} post={post} />
                 ))
-                : null
+                : <h1>Loading..</h1>
             }
         </div>
     );

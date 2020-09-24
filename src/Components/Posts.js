@@ -27,7 +27,6 @@ function Posts(props) {
                 </button>
             </div>
             <Popup post={selectedPost} call={modal} close={close}/>
-           
         </div>
     );
 }
