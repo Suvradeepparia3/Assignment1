@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Posts from './Posts';
 import Axios from 'axios';
+import { UserContext } from '../App';
 
 function FetchingData(props) {
 
@@ -9,7 +10,8 @@ function FetchingData(props) {
     const [ limit, setLimit ] = useState(20)
     const [ filteredOrNot, setFilteredOrNot ] = useState(false)
 
-    
+    const bar = useContext(UserContext)
+
     const dataFetching = () => {
         Axios.get(`https://jsonplaceholder.typicode.com/comments/?_limit=${limit}`)
         .then((response) => {
@@ -38,7 +40,7 @@ function FetchingData(props) {
         dataFetching()
         setFilteredOrNot(false)
         // eslint-disable-next-line
-    },[props.bar])
+    },[bar])
 
     
 

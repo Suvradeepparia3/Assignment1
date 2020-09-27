@@ -3,6 +3,8 @@ import SearchBar from './Components/SearchBar';
 import Header from './Components/Header';
 import './App.css';
 
+export const UserContext = React.createContext()
+
 function App() {
 
   const [ scrollBar, setScrollBar ] = useState(0)
@@ -19,8 +21,10 @@ function App() {
 
   return (
     <div className="App">
+      <UserContext.Provider value={scrollBar}>
       <Header />
-      <SearchBar bar={scrollBar}/>
+      <SearchBar />
+      </UserContext.Provider>
     </div>
   );
 }

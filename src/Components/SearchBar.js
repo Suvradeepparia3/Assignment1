@@ -15,7 +15,7 @@ function SearchBar(props) {
                 <input type="text" placeholder="Search name as 'modi'" className="bar" value={search} onChange={getSearch}  />
                 <button type="button" className="button">Search</button>
             </form>
-            <FetchingData searchData={search} bar={props.bar} />
+            <FetchingData searchData={search} />
         </div>
     );
 }
