@@ -16,7 +16,7 @@ function Posts(props) {
 
     return (
         <div>
-          
+            
             <div className="card">
             <button className="content-header" onClick={() => callModal(props.post)}>
                 
@@ -26,6 +26,7 @@ function Posts(props) {
                 
                 </button>
             </div>
+          
             <Popup post={selectedPost} call={modal} close={close}/>
         </div>
     );
