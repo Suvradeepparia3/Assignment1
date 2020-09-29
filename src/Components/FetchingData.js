@@ -15,16 +15,20 @@ function FetchingData(props) {
     const [ noData, setNoData ] = useState(false)
     const [ error, setError ] = useState(false)
 
+   
     const dataFetching = () => {
         setLoading(true)
-        if(limit <= 100){
+        if(noData === false){
             Axios.get(`https://jsonplaceholder.typicode.com/posts/${limit}/comments/`)
             .then((response) => {
                 setLoading(false)
-                // setNewData(response.data)
-                setData(response.data)
+                if(response.data.length === 0){
+                    setNoData(true)
+                }
+                let recentData = response.data
+                let totalData = data.concat(recentData)
+                setData(totalData)
                 setLimit(limit + 1)
-                // i am calling first 20 then 30 then 40 so on, every time i call total value from start.
             })            
             .catch((error) => {
                 setLoading(false)
@@ -33,10 +37,17 @@ function FetchingData(props) {
             })
         } else {
             setLoading(false)
-            setNoData(true)
         }
        
     }
+
+    const scroll = (e) => {
+        setFilteredOrNot(false)
+        if ((e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {  
+            setScrollBar(scrollBar + 1)
+        }
+      }
+
 
     useEffect(() => {
         setSearchLoading(true)
@@ -57,21 +68,12 @@ function FetchingData(props) {
     },[props.searchData])
     
 
-  const scroll = (e) => {
-    setFilteredOrNot(false)
-    if ((e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {  
-        setScrollBar(scrollBar + 1)
-    }
-  }
-   
-
-    useEffect(() => {
-        dataFetching()
-        setFilteredOrNot(false)
-        // eslint-disable-next-line
-    },[scrollBar])
-
     
+  useEffect(() => {
+    dataFetching()
+    setFilteredOrNot(false)
+    // eslint-disable-next-line
+},[scrollBar])
 
     return (
            filteredOrNot ? 
