@@ -5,8 +5,9 @@ import Axios from 'axios';
 function FetchingData(props) {
 
     const [ data, setData ] = useState([])
+    // const [ newData, setNewData ] = useState([])
     const [ filter, setFilter ] = useState([])
-    const [ limit, setLimit ] = useState(20)
+    const [ limit, setLimit ] = useState(1)
     const [ filteredOrNot, setFilteredOrNot ] = useState(false)
     const [ scrollBar, setScrollBar ] = useState(0)
     const [ loading, setLoading ] = useState(false)
@@ -16,14 +17,15 @@ function FetchingData(props) {
 
     const dataFetching = () => {
         setLoading(true)
-        if(data.length !== 500){
-            Axios.get(`https://jsonplaceholder.typicode.com/comments/?_limit=${limit}`)
+        if(limit <= 100){
+            Axios.get(`https://jsonplaceholder.typicode.com/posts/${limit}/comments/`)
             .then((response) => {
                 setLoading(false)
+                // setNewData(response.data)
                 setData(response.data)
-                setLimit(limit + 10)
+                setLimit(limit + 1)
                 // i am calling first 20 then 30 then 40 so on, every time i call total value from start.
-            })
+            })            
             .catch((error) => {
                 setLoading(false)
                 setError(true)
