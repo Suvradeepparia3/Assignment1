@@ -5,7 +5,6 @@ import Axios from 'axios';
 function FetchingData(props) {
 
     const [ data, setData ] = useState([])
-    // const [ newData, setNewData ] = useState([])
     const [ filter, setFilter ] = useState([])
     const [ limit, setLimit ] = useState(1)
     const [ filteredOrNot, setFilteredOrNot ] = useState(false)
