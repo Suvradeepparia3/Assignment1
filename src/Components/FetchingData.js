@@ -60,9 +60,7 @@ function FetchingData(props) {
                 }
             ))
           }, 2000);
-
           return () => clearTimeout(timer);
-
         // eslint-disable-next-line
     },[props.searchData])
     
