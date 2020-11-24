@@ -32,6 +32,7 @@ function App() {
           </tr>
         </table>
       </div>
+      {/* Go over data */}
       {data.map((info, index) => (
         <div key={index} className="box">
           <table>
